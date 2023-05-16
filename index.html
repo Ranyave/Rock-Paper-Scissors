@@ -8,23 +8,96 @@
 </head>
 <body>
   <script>
-//play rock paper scissors
-  // prompt for the players choise
-    // correct case upper/lower
-    // check for valid choice
-    // ask for valid choise or update playerSelection var
-  // get computer choice. sub function
-  function getComputerChoise(){
-    function getRandomComp(min, max){
-      return Math.random() * (4 - 1) + 1;
-    }
-  }
-  let RanNum = getComputerChoise();
-  console.log(RanNum);
+    let RanNum = 1;
+    let computerSelection = 1;
+    let playerChoise = 1;
+    //play rock paper scissors
+    
+    function playRound(playerChoise, computerSelection){
+      
+      computerSelection = (getComputerChoise())
+      playerChoise = (choose());
+      console.log("inside playRound");
+      console.log(playerChoise);
+      console.log(computerSelection);
 
-    // pick random number to select choice
-    //update computerSelection
-  // compair choises to find a winnter
+      if (playerChoise === computerSelection){
+        return ("it is a tie")
+      } else if (playerChoise === "Rock" && computerSelection === "Paper"){
+        return ("You Lose! Paper beats Rock")
+      } else if (playerChoise === "Rock" && computerSelection === "Scissors"){
+        return ("You win! Rock beats Scissors")
+      } else if (playerChoise === "Paper" && computerSelection === "Rock"){
+        return ("You Win! Paper beats Rock")
+      } else if (playerChoise === "Paper" && computerSelection === "Scissors"){
+        return ("You Lose! Scissors beat Paper")
+      } else if (playerChoise === "Scissors" && computerSelection === "Paper"){
+        return ("You Win! Scissors beat Paper")
+      } else if (playerChoise === "Scissors" && computerSelection === "Rock"){
+        return ("You Lose! Rock beats Scissors")
+      } else {
+        return("This still needs to be programmed")
+      }
+     
+
+    }
+
+
+    // get computer choice. sub function
+    function getComputerChoise(min, max){
+ 
+      function computerRandom(min ,max){   // pick random number to select choice
+
+        min = Math.ceil(1);
+        max = Math.floor(4);
+        return Math.floor(Math.random() * (4 - 1) + 1); // The maximum is exclusive and the minimum is inclusive
+      }
+      RanNum = computerRandom();    
+
+      if (RanNum === 1){                      //update computer Selection to String
+        computerSelection = "Rock"
+      } else if(RanNum === 2){
+        computerSelection = "Paper"
+      } else {
+        computerSelection = "Scissors"
+      }
+      return computerSelection;
+    }
+
+  
+    //computerChoise = (getComputerChoise())
+    //console.log(computerChoise);
+  
+
+     // prompt for the players choise
+    function choose(){
+      playerChoise = prompt("Choose Rock, Paper, or Scissors"); 
+      let cap;
+      let lower;
+
+      // correct case upper/lower
+      lower = playerChoise.slice(1).toLowerCase();
+      cap = playerChoise.charAt(0).toUpperCase();
+      playerChoise = cap + lower;
+      
+      // ask for valid choise or update playerSelection var
+
+      while ( playerChoise != "Rock" && playerChoise != "Paper" && playerChoise != "Scissors"){
+        playerChoise = prompt("please Choose 'Rock', 'Paper', or 'Scissors'");
+        lower = playerChoise.slice(1).toLowerCase();
+        cap = playerChoise.charAt(0).toUpperCase();
+        playerChoise = cap + lower;
+      }
+      return (playerChoise)
+    }
+
+
+    //console.log(playerChoise);
+    console.log(playRound(playerChoise, computerSelection));
+
+
+   
+    // compair choises to find a winnter
     // build win/lose message
     // output the winner.
     
